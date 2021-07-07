@@ -1,0 +1,10 @@
+Usuario admin (base de datos):admin
+contraseña: admin1234
+
+------------------------------
+SQL
+usuario sql: c##prueba4
+contraseña: prueba4
+
+------------------------
+http://127.0.0.1:8000/

@@ -1,0 +1,134 @@
+{%load static%}
+<!doctype html>
+<html>
+<head>
+  
+  <title>Listado periodistas</title> 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="{% static 'css/estilo.css' %}" type="text/css" rel="stylesheet"> 
+  <link href="{% static 'img/favicon.ico' %}" rel="icon" type="image/x-icon" /> 
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body class="fondo">
+    <nav class="navbar navbar-expand-sm navbar-dark"  style="background-color: #000000;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+          <!-- logo -->
+        <div>
+          <img src="{%static 'img/logo.png'%}" width="70" height="70" >
+        </div>
+        </div>
+         <!-- menu -->
+     <div class="collapse navbar-collapse" id="opciones"> 
+       <br>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link tamano" href="{% url 'Inicio' %}" style="color: aliceblue;">Inicio</a>
+        </li>
+     
+        <li class="nav-item">
+          <a class="nav-link tamano" href="{% url 'Lista' %}" style="color: aliceblue; " >Colaboradores</a> 
+          </li>
+
+        <li class="nav-item">
+          <a class="nav-link tamano" href="form_objeto" style="color: aliceblue; " >Agregar colaborador</a>
+        </li>
+        </ul>
+      </div>
+    </nav>
+        
+      <!--FOTO SUPERIOR-->
+      <div class="encabezadoimagen">
+        <div class="hero-text">
+
+          <div> <h1 style="color: #f59c0c; font-size: 100px;">Caos News</h1></div>
+          <p style="font-family: Arial;">Aquí encuentras las ultimas noticias de Chile y el mundo</p>
+        </div>
+        
+      </div>
+      <br>
+     
+      <!--tabla-->
+      <br>
+      <br>
+          <div class="table-responsive">
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <table class="table table-striped table-bordered table-hover table-dark" style="font-family: Arial;">
+                    <thead>
+                      <tr>
+                        <th style="background-color: #22223c;">Nombre</th>
+                        <th style="background-color: #22223c;">Rut</th>
+                        <th style="background-color: #22223c;">Teléfono</th>
+                        <th style="background-color: #22223c;">Email</th>
+                        <th style="background-color: #22223c;">Direccion</th>
+                        <th style="background-color: #22223c;">País</th>
+                        <th style="background-color: #22223c;">Contraseña</th>
+                        <th style="background-color: #22223c;">Imagen</th>
+                        <th style="background-color: #6e4960; border-color: #6e4960; "></th>
+                        <th style="background-color: #6e4960; border-color: #6e4960; "></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tr>
+                    {%for per in periodistas%}       
+                        <tr>       
+                            <td>{{per.nombreCompleto}}</td>
+                            <td>{{per.rut}}</td>  
+                            <td>{{per.telefono}}</td>     
+                            <td>{{per.email}}</td>  
+                            <td>{{per.direccion}}</td>
+                            <td>{{per.pais}}</td>  
+                            <td>{{per.contraseña}}</td>                          
+                            <td style="margin-bottom: 10px; width: 100px; height: 100px;"><img class="card-img-top" src="{{ per.image.url }}"></td>
+                            <td><a href="{% url 'mod_objeto' per.rut%}" style="color: #ffffff;font-family: Arial;">Modificar   </a></td>
+                            <td><a href="{% url 'delete_objeto' per.rut%}" style="color: #ffffff;font-family: Arial;">Eliminar   </a></td>
+                        </tr>        
+                    {%endfor%} 
+      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+          
+            <br>
+
+
+    <!-- Footer -->
+<footer class="text-muted py-5 fondofondo">
+  <div class="container">
+    <p class="float-end mb-1">
+      <a style="color: #f59c0c; font-family: Arial;" href="#">Subir al inicio</a>
+    </p>
+    <div class="shared-panel">
+      <span>Encuentranos en nuestras redes sociales</span><br>
+      <a target="_blank" class="shared fb" title="Facebook"></a>	
+      <a target="_blank" class="shared tt" title="Twitter"></a>
+      <a target="_blank" class="shared gp" title="Google+"></a>
+      <a  data-action='share/whatsapp/share' class="shared wa" title="WhatsApp"></a>
+      <a target="_blank" class="shared ce" id="sml" title="Email"></a>		
+    </div>
+    <p style="font-family: Arial;" class="mb-1">Fernanda Gutiérrez &copy; Derechos reservados.</p>
+    <p  style="font-family: Arial;" class="mb-0"> <a href="#" style="color: #f59c0c; font-family: Arial;">visita nuestro homepage</a> o lee  <a style="color: #f59c0c; font-family: Arial;" href="#">nuestra politica</a>.</p>
+  </div>
+</footer>
+ 
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    </body>
+
+
+
+</html>
